@@ -36,7 +36,7 @@ fn main() -> io::Result<()> {
                 "-Tpng",
                 "out/dot/medium_btree.dot",
                 "-o",
-                "out/png/medimum_btree.png",
+                "out/png/medium_btree.png",
             ])
             .spawn()
             .expect("dot failed to execute");
