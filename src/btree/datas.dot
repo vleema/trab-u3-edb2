@@ -1,0 +1,8 @@
+digraph BTree{
+node [shape=record];
+Node0 [label="marina "];
+Node0 -> Node1;
+Node1 [label="bianca carvalho "];
+Node0 -> Node2;
+Node2 [label="vinicius goes tutu seilaa "];
+}

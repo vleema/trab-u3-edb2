@@ -1,0 +1,8 @@
+digraph BTree{
+node [shape=record];
+Node0 [label="macarrao "];
+Node0 -> Node1;
+Node1 [label="arroz feijao "];
+Node0 -> Node2;
+Node2 [label="alface farofa carne "];
+}
