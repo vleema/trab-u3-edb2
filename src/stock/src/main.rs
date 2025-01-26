@@ -1,7 +1,7 @@
 mod stock;
 
 use std::fs::File;
-use std::io::{self, BufRead};
+use std::io::{self, BufRead,Write};
 use std::path::Path;
 use btree::btree::core::BTree;
 use stock::Data;
@@ -41,20 +41,80 @@ fn parse_line(line: &str) -> Option<(usize, String, usize)> {
     None
 }
 
+fn print_menu_options() {
+    println!("Please choose an option:");
+    println!(" 1 - Search item");
+    println!(" 2 - Insert item");
+    println!(" 3 - Delete item");
+    println!(" 4 - Quit\n");
+}
+
+fn handle_menu(menu_option: usize, tree: &mut BTree<Data, 2>) {
+    match menu_option {
+        1 => {
+            println!("ID:");
+            let id_search = read_input::<usize>();
+            if tree.contains(&Data::new(id_search, String::new(), 0)) {
+                println!("Item found");
+            } else {
+                println!("Item not found");
+            }
+            println!("Search");
+        }
+        2 => {
+            println!("ID:");
+            let id = read_input::<usize>();
+            println!("Name:");
+            let name = read_input::<String>();
+            println!("Number of items in stock:");
+            let stock = read_input::<usize>();
+            tree.insert(Data::new(id, name, stock));
+            println!("Insert.");
+        }
+        3 => {
+            println!("ID:");
+            let id_remove = read_input::<usize>();
+            tree.remove(&Data::new(id_remove, String::new(), 0));
+            println!("Item deleted.");
+        }
+        4 => {
+            println!("Exiting the program.");
+        }
+        _ => {
+            println!("Invalid option. Please try again.");
+        }
+    }
+}
+
+fn read_input<T: std::str::FromStr>() -> T {
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    input.trim().parse().ok().expect("Invalid input")
+}
+
 fn main() -> io::Result<()> {
     let mut tree: BTree<Data, 2> = BTree::new();
 
     let file_path = "dadosB.txt";
 
     match read_file(file_path) {
-        Ok(dados) => {
-            for data in dados {
+        Ok(datas) => {
+            for data in datas {
                 tree.insert(data);
             }
         }
         Err(erro) => {
-            eprintln!("Erro ao ler o arquivo: {}", erro);
+            eprintln!("Failed to read file: {}", erro);
         }
+    }
+
+    loop {
+        print_menu_options();
+        let menu_option = read_input::<usize>();
+        if menu_option == 4 {
+            break;
+        }
+        handle_menu(menu_option, &mut tree);
     }
 
     tree.generate_graph("out/dot/datas.dot")?;
