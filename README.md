@@ -4,6 +4,27 @@ Trabalho da Terceira Unidade da disciplina Estrutura de Dados II
 
 ## Uso
 
+### Uso do CRUD
+
+Na pasta `src/stock` estâo as funções que, utilizando a implementação em Rust da árvore B, transformam ela em um CRUD com menu interativo.
+
+- Inicie o programa com:
+  ```terminal
+  cargo build
+  cargo run
+  ```
+
+Siga as instruções para interagir com a árvore base (Leitura do arquivo txt disponibilizado pelo professor).
+Ao finalizar o programa, sua nova árvore será salva em `out/dot/datas.dot`. Se você tiver o graphviz instalado, pode transformá-la em um png usando o seguinte comando:
+
+```terminal
+ dot -Tpng out/dot/datas.dot -o out/png/datas.png
+  ```
+
+Assim, a visualização da sua nova árvore será salva em `out/png/datas.png`.
+
+### Testes Árvore B crua
+
 Na pasta `src/btree` está a implementação em Rust da árvore B.
 
 - Teste com:
