@@ -10,6 +10,18 @@ impl Data {
     pub fn new(id: usize, name: String, stock: usize) -> Self {
         Self { id, name, stock }
     }
+
+    pub fn id(&self) -> usize {
+        self.id
+    }
+
+    pub fn name(&self) -> &str {
+        &self.name
+    }
+
+    pub fn stock(&self) -> usize {
+        self.stock
+    }
 }
 
 impl PartialEq for Data {

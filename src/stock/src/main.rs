@@ -52,9 +52,9 @@ fn handle_menu(menu_option: usize, tree: &mut BTree<Data, 2>) {
         1 => {
             println!("ID:");
             let id_search = read_input::<usize>();
-            // fetch retorna um Option<&Data>
-            if tree.contains(&Data::new(id_search, String::new(), 0)) {
+            if let Some(item) = tree.fetch(&Data::new(id_search, String::new(), 0)) {
                 println!("Item found");
+                println!("ID: {}, Name: {}, Stock: {}", item.id(), item.name(), item.stock());
             } else {
                 println!("Item not found");
             }
@@ -67,7 +67,6 @@ fn handle_menu(menu_option: usize, tree: &mut BTree<Data, 2>) {
             println!("Number of items in stock:");
             let stock = read_input::<usize>();
             tree.insert(Data::new(id, name, stock));
-            println!("Insert.");
         }
         3 => {
             println!("ID:");
