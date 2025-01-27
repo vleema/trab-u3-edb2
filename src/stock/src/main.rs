@@ -1,9 +1,9 @@
 mod stock;
 
-use std::fs::File;
-use std::io::{self, BufRead,Write};
-use std::path::Path;
 use btree::btree::core::BTree;
+use std::fs::File;
+use std::io::{self, BufRead, Write};
+use std::path::Path;
 use stock::Data;
 
 fn read_file(path: &str) -> io::Result<Vec<Data>> {
@@ -23,12 +23,10 @@ fn read_file(path: &str) -> io::Result<Vec<Data>> {
 }
 
 fn parse_line(line: &str) -> Option<(usize, String, usize)> {
-
     let content = line.trim_matches(|c| c == '{' || c == '}');
     let parts: Vec<&str> = content.split(',').map(|s| s.trim()).collect();
 
     if parts.len() == 3 {
-  
         if let (Ok(id), Some(name), Ok(stock)) = (
             parts[0].parse::<usize>(),
             parts.get(1).map(|s| s.trim_matches('"').to_string()),
@@ -54,12 +52,12 @@ fn handle_menu(menu_option: usize, tree: &mut BTree<Data, 2>) {
         1 => {
             println!("ID:");
             let id_search = read_input::<usize>();
+            // fetch retorna um Option<&Data>
             if tree.contains(&Data::new(id_search, String::new(), 0)) {
                 println!("Item found");
             } else {
                 println!("Item not found");
             }
-            println!("Search");
         }
         2 => {
             println!("ID:");
@@ -88,7 +86,9 @@ fn handle_menu(menu_option: usize, tree: &mut BTree<Data, 2>) {
 
 fn read_input<T: std::str::FromStr>() -> T {
     let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Failed to read input");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read input");
     input.trim().parse().ok().expect("Invalid input")
 }
 
@@ -120,4 +120,3 @@ fn main() -> io::Result<()> {
     tree.generate_graph("out/dot/datas.dot")?;
     Ok(())
 }
-

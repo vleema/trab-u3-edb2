@@ -19,13 +19,19 @@ impl<T: Ord, const D: usize> BTree<T, D> {
         Leaf { keys: vec![] }
     }
 
-    pub fn contains(&self, value: &T) -> bool {
+    pub fn fetch(&self, value: &T) -> Option<&T> {
         match self {
-            Leaf { keys } => keys.binary_search(value).is_ok(),
+            Leaf { keys } => keys
+                .binary_search(value)
+                .map_or_else(|_| None, |pos| Some(&keys[pos])),
             Node { keys, childs } => keys
                 .binary_search(value)
-                .map_or_else(|child| childs[child].contains(value), |_| true),
+                .map_or_else(|child| childs[child].fetch(value), |pos| Some(&keys[pos])),
         }
+    }
+
+    pub fn contains(&self, value: &T) -> bool {
+        self.fetch(value).is_some()
     }
 
     pub fn insert(&mut self, value: T) {
