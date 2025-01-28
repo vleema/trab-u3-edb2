@@ -6,6 +6,23 @@ Trabalho da Terceira Unidade da disciplina Estrutura de Dados II
 
 [Assista ao vídeo](https://www.youtube.com/watch?v=Fp5ghKduTK8) para entender o funcionamento do projeto.
 
+## $\LaTeX$
+
+Para compilar o documento, use o Makefile na pasta latex.
+
+- Compila o arquivo `main.pdf` em `latex/output`.
+
+```terminal
+make
+```
+
+- Limpa os arquivos de compilação
+
+```terminal
+ make clean
+```
+
+
 ## Uso
 
 ### Uso do CRUD
