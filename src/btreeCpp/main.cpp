@@ -103,18 +103,12 @@ void BTNode::insertNonFull(int k){
         keys[i+1] = k;
         numberOfKeys++;
     }else{
-        // Find the child which is going to have the new key
         while (i >= 0 && keys[i] > k)
             i--;
 
-        // See if the found child is full
         if (children[i+1]->numberOfKeys == 2*d){
-            // If the child is full, then split it
             splitChild(i+1, children[i+1]);
 
-            // After split, the middle key of C[i] goes up and
-            // C[i] is splitted into two.  See which of the two
-            // is going to have the new key
             if (keys[i+1] < k)
                 i++;
         }
