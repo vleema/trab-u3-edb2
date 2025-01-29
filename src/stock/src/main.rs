@@ -2,7 +2,7 @@ mod stock;
 
 use btree::btree::core::BTree;
 use std::fs::File;
-use std::io::{self, BufRead, Write};
+use std::io::{self, BufRead};
 use std::path::Path;
 use stock::Data;
 

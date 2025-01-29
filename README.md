@@ -4,7 +4,7 @@ Trabalho da Terceira Unidade da disciplina Estrutura de Dados II
 
 ## Vídeo
 
-[Assista ao vídeo](https://www.youtube.com/watch?v=Fp5ghKduTK8) para entender o funcionamento do projeto.
+[Assista ao vídeo](https://drive.google.com/file/d/12Wqmqjj29S0nSoyc4Bi0gnkmtm5SqX4b/view?usp=sharing) para entender o funcionamento do projeto.
 
 ## $\LaTeX$
 
@@ -63,9 +63,9 @@ Na pasta `src/btree` está a implementação em Rust da árvore B.
 ---
 # Lista de atividades dos colaboradores
 
-- [ ] 1. Implementação Computacional (Teoria)
+- [X] 1. Implementação Computacional (Teoria)
   - [X] 1.0. Descreva o ambiente computacional utilizado (Software e Hardware). (**Bianca**)
-  - [ ] 1.1. Faça um algoritmo em forma de fluxograma para a função de exclusão de uma
+  - [X] 1.1. Faça um algoritmo em forma de fluxograma para a função de exclusão de uma
 informação em uma árvore B. (deve ser entregue em formato PDF) (**Gabriel**)
 - [X] 2. Implementação Computacional (Aplicação, Árvore B)
   - [X] 2.0. Implemente uma árvore B para armazenar e organizar informações de um sistema de controle de estoque. Cada nó da árvore conterá itens de estoque com as seguintes informações: ID, Nome e Quantidade em estoque. (**Bianca**)
